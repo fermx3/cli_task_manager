@@ -4,8 +4,8 @@ from datetime import datetime
 
 @dataclass
 class Task:
-    id: UUID = field(default_factory=uuid4)
     title: str
+    category: str = ""
+    id: UUID = field(default_factory=uuid4)
     created_at: datetime = field(default_factory=datetime.now)
-    category: str
-    completed: bool = field(default=False)
+    completed: bool = False
