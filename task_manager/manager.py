@@ -7,11 +7,12 @@ def add_task(tasks: list[Task], title: str, category: str = "") -> list[Task]:
 
 def list_tasks(tasks: list[Task]) -> None:
     for task in tasks:
-        category = f" | {task.category}" if task.category else ""
+        category = f" · {task.category}" if task.category else ""
         status = "X" if task.completed else " "
 
-        print(f"[{status}] - {task.title} (id: {task.id})")
+        print(f"\n[{status}] {task.title}")
         print(f"{task.created_at.date()}{category}")
+        print(f"id: {task.id}")
 
 def complete_task(tasks: list[Task], task_id: str) -> list[Task]:
     target_id = UUID(task_id)
