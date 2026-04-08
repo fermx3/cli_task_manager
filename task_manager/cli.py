@@ -5,20 +5,43 @@ from task_manager.storage import load_tasks, save_tasks
 FILE_PATH = "tasks.json"
 
 def handle_add(title: str, category:str = "") -> None:
+    """Add a task and save it to JSON file.
+
+    Args:
+        title: Title of the new task.
+        category: Optional category for the task.
+    """
     loaded_tasks = load_tasks(FILE_PATH)
     new_tasks = add_task(tasks=loaded_tasks, title=title, category=category)
     save_tasks(FILE_PATH, tasks=new_tasks)
 
 def handle_list() -> None:
+    """Print all tasks to the terminal."""
     loaded_tasks = load_tasks(FILE_PATH)
     list_tasks(tasks=loaded_tasks)
 
 def handle_complete(task_id: str) -> None:
+    """Mark given task as completed and save it in a JSON file.
+
+    Args:
+        task_id: Id of the task to mark completed.
+
+    Raises:
+        ValueError: If no task with the given task_id is found.
+    """
     loaded_tasks = load_tasks(FILE_PATH)
     new_tasks = complete_task(loaded_tasks, task_id)
     save_tasks(FILE_PATH, tasks=new_tasks)
 
 def handle_delete(task_id: str) -> None:
+    """Delete a given task and save state to JSON file.
+
+    Args:
+        task_id: Id of the task to delete.
+
+    Raises:
+        ValueError: If no task with the given task_id is found.
+    """
     loaded_tasks = load_tasks(FILE_PATH)
     new_tasks = delete_task(loaded_tasks, task_id)
     save_tasks(FILE_PATH, tasks=new_tasks)

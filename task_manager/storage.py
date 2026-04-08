@@ -12,6 +12,11 @@ from task_manager.models import Task
 # ]
 
 def load_tasks(filepath: str) -> list[Task]:
+    """Load tasks from a JSON file.
+
+    Returns an empty list if the file does not exist,
+    allowing first-run usage without setup.
+    """
     try:
         with open(filepath, "r") as file:
             tasks = json.load(file)
@@ -30,6 +35,12 @@ def load_tasks(filepath: str) -> list[Task]:
         return []
 
 def save_tasks(filepath: str, tasks: list[Task]) -> None:
+    """Save tasks to a JSON file, creating it if it does not exist.
+
+    Args:
+        filepath: Path to the JSON file.
+        tasks: List of tasks to serialize and save.
+    """
     with open(filepath, "w") as file:
         tasks_list = [
             asdict(task)
