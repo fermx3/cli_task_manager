@@ -18,7 +18,7 @@ def load_tasks(filepath: str) -> list[Task]:
     allowing first-run usage without setup.
     """
     try:
-        with open(filepath, "r") as file:
+        with open(filepath, "r", encoding="utf-8") as file:
             tasks = json.load(file)
 
             return [
@@ -41,7 +41,7 @@ def save_tasks(filepath: str, tasks: list[Task]) -> None:
         filepath: Path to the JSON file.
         tasks: List of tasks to serialize and save.
     """
-    with open(filepath, "w") as file:
+    with open(filepath, "w", encoding="utf-8") as file:
         tasks_list = [
             asdict(task)
             for task in tasks
